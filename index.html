@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa da Bíblia</title>
+    <link rel="icon" type="image/png" href="imagens/logo-pv-mdc-Dok6y-Bb.png">
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1027639912561968');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1027639912561968&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/piraa/cdn@master/utm-transfer.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: 'var(--background)',
+                        foreground: 'var(--foreground)',
+                        card: {
+                            DEFAULT: 'var(--card)',
+                            foreground: 'var(--card-foreground)'
+                        },
+                        popover: {
+                            DEFAULT: 'var(--popover)',
+                            foreground: 'var(--popover-foreground)'
+                        },
+                        primary: {
+                            DEFAULT: 'var(--primary)',
+                            foreground: 'var(--primary-foreground)'
+                        },
+                        secondary: {
+                            DEFAULT: 'var(--secondary)',
+                            foreground: 'var(--secondary-foreground)'
+                        },
+                        muted: {
+                            DEFAULT: 'var(--muted)',
+                            foreground: 'var(--muted-foreground)'
+                        },
+                        accent: {
+                            DEFAULT: 'var(--accent)',
+                            foreground: 'var(--accent-foreground)'
+                        },
+                        destructive: {
+                            DEFAULT: 'var(--destructive)',
+                            foreground: 'var(--destructive-foreground)'
+                        },
+                        border: 'var(--border)',
+                        input: 'var(--input)',
+                        ring: 'var(--ring)',
+                    },
+                    borderRadius: {
+                        DEFAULT: 'var(--radius)'
+                    },
+                    fontFamily: {
+                        sans: ['var(--font-sans)'],
+                        serif: ['var(--font-serif)'],
+                        mono: ['var(--font-mono)'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities matching React inline styles */
+        .glass-nav {
+            background-color: color-mix(in oklch, var(--background), transparent 20%);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Utility to hide scrollbar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes bounce-x-left {
+
+            0%,
+            100% {
+                transform: translateX(0) translateY(-50%);
+            }
+
+            50% {
+                transform: translateX(-25%) translateY(-50%);
+            }
+        }
+
+        @keyframes bounce-x-right {
+
+            0%,
+            100% {
+                transform: translateX(0) translateY(-50%);
+            }
+
+            50% {
+                transform: translateX(25%) translateY(-50%);
+            }
+        }
+
+        .animate-bounce-left {
+            animation: bounce-x-left 1s infinite;
+        }
+
+        .animate-bounce-right {
+            animation: bounce-x-right 1s infinite;
+        }
+
+        .testimonialSwiper .swiper-wrapper {
+            transition-timing-function: linear;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-background text-foreground transition-colors duration-300 overflow-x-hidden font-sans">
+
+    <!-- Top Banner -->
+    <div
+        class="bg-primary text-primary-foreground py-2 text-center text-sm md:text-sm font-bold tracking-wider uppercase">
+        🎉 DESCONTO DE ANO NOVO APLICADO! 🤍
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-8 pb-12 lg:pt-12 lg:pb-20 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px]"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+        </div>
+
+        <!-- Changed to single column structure centered -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12 text-center">
+
+            <div class="w-full space-y-4 lg:space-y-8 flex flex-col items-center">
+                <!-- Logo/Header -->
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <img src="imagens/logo-pv-mdc-Dok6y-Bb.png" alt="Logo Mapa do Católico"
+                        class="object-cover h-7 w-7 shadow-md rounded-lg">
+                    <span class="font-bold text-xl tracking-tight text-foreground font-sans">
+                        Mapa da Bíblia
+                    </span>
+                </div>
+
+                <!-- Headline -->
+                <h1
+                    class="text-3xl md:text-6xl lg:text-6xl font-black font-sans tracking-tight text-foreground leading-[1.1]">
+                    Entenda os 73 livros da Bíblia de forma simples e viva a transformação da Palavra em sua vida
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-base md:text-xl text-muted-foreground font-serif max-w-xl leading-relaxed mx-auto">
+                    Um <strong>jeito fácil e aprovado por milhares de católicos</strong>, para aprender a
+                    <strong>Palavra de Deus de
+                        forma simples.</strong>
+                </p>
+
+                <!-- Product Carousel -->
+                <div class="md:w-[140%] my-8 relative group">
+                    <!-- Carousel Container -->
+                    <div id="hero-carousel"
+                        class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide rounded-xl space-x-0 w-full aspect-[4/3] md:aspect-video bg-transparent">
+                        <div class="snap-center shrink-0 w-full h-full"><img src="imagens/01-carrossel.webp"
+                                alt="Slide 1" class="w-full h-full object-contain"></div>
+                        <div class="snap-center shrink-0 w-full h-full"><img src="imagens/02-carrossel.webp"
+                                alt="Slide 2" class="w-full h-full object-contain"></div>
+                        <div class="snap-center shrink-0 w-full h-full"><img src="imagens/04-carrossel.webp"
+                                alt="Slide 4" class="w-full h-full object-contain"></div>
+                        <div class="snap-center shrink-0 w-full h-full"><img src="imagens/05-carrossel.webp"
+                                alt="Slide 5" class="w-full h-full object-contain"></div>
+                        <div class="snap-center shrink-0 w-full h-full"><img src="imagens/06-carrossel.webp"
+                                alt="Slide 6" class="w-full h-full object-contain"></div>
+                        <div class="snap-center shrink-0 w-full h-full"><img src="imagens/07-carrossel.webp"
+                                alt="Slide 7" class="w-full h-full object-contain"></div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <button
+                        onclick="document.getElementById('hero-carousel').scrollBy({left: -300, behavior: 'smooth'})"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 text-primary z-20 animate-bounce-left transition-colors hover:opacity-80">
+                        <i data-lucide="chevron-left" class="w-8 h-8"></i>
+                    </button>
+                    <button onclick="document.getElementById('hero-carousel').scrollBy({left: 300, behavior: 'smooth'})"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 text-primary z-20 animate-bounce-right transition-colors hover:opacity-80">
+                        <i data-lucide="chevron-right" class="w-8 h-8"></i>
+                    </button>
+                </div>
+
+                <!-- Botões -->
+                <div class="w-full flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="document.getElementById('download')?.scrollIntoView({ behavior: 'smooth' })"
+                        class="inline-flex items-center justify-center rounded-md text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-14 px-8 py-2 bg-primary text-primary-foreground hover:opacity-90 shadow-xl shadow-primary/20 w-full sm:w-64">
+                        <i data-lucide="book" class="mr-2 h-5 w-5"></i>
+                        Quero Adquirir
+                    </button>
+                    <button onclick="document.getElementById('apresentacao')?.scrollIntoView({ behavior: 'smooth' })"
+                        class="inline-flex items-center justify-center rounded-md text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-14 px-8 py-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground shadow-sm w-full sm:w-64">
+                        <i data-lucide="play-circle" class="mr-2 h-5 w-5"></i>
+                        Quero Conhecer
+                    </button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <!-- Depoimentos Carrossel -->
+    <section class="py-0 bg-background overflow-hidden relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- Header -->
+            <div class="text-center mb-12 space-y-4">
+                <!-- Social Proof Mini -->
+                <div class="flex items-center justify-center gap-4 pt-4">
+                    <div class="flex -space-x-3">
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center overflow-hidden">
+                            <img src="imagens/avatar_maria_03.png" alt="avatar">
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center overflow-hidden">
+                            <img src="imagens/eduardo-mendes.webp" alt="avatar">
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center overflow-hidden">
+                            <img src="imagens/roberto-lima.webp" alt="avatar">
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center overflow-hidden">
+                            <img src="imagens/image 416.png" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="text-sm">
+                        <div class="flex text-primary">
+                            <i data-lucide="star" width="14" height="14" fill="currentColor"></i>
+                            <i data-lucide="star" width="14" height="14" fill="currentColor"></i>
+                            <i data-lucide="star" width="14" height="14" fill="currentColor"></i>
+                            <i data-lucide="star" width="14" height="14" fill="currentColor"></i>
+                            <i data-lucide="star" width="14" height="14" fill="currentColor"></i>
+                        </div>
+                        <p class="text-muted-foreground font-medium"><span
+                                class="font-bold text-foreground">35.000+</span>
+                            católicos</p>
+                    </div>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold font-sans text-center text-foreground max-w-3xl mx-auto">
+                    O que estão dizendo sobre o Mapa da Bíblia
+                </h2>
+                <p class="text-lg md:text-xl text-muted-foreground font-serif">
+                    O <strong>Mapa da Bíblia é incrível</strong> e milhares de <strong>católicos concordam com
+                        isso</strong>.
+                </p>
+            </div>
+
+            <!-- Swiper -->
+            <div class="swiper mySwiper w-full pb-12">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-1.webp" alt="Depoimento 1" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-15.webp" alt="Depoimento 15" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-16.webp" alt="Depoimento 16" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-14.webp" alt="Depoimento 14" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-13.webp" alt="Depoimento 13" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-12.webp" alt="Depoimento 12" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-11.webp" alt="Depoimento 11" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-10.webp" alt="Depoimento 10" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-9.webp" alt="Depoimento 9" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-7.webp" alt="Depoimento 7" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-8.webp" alt="Depoimento 8" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-6.webp" alt="Depoimento 6" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-5.webp" alt="Depoimento 5" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-4.webp" alt="Depoimento 4" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-3.webp" alt="Depoimento 3" />
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg border border-border/50"
+                            src="imagens/st-2.webp" alt="Depoimento 2" />
+                    </div>
+                </div>
+                <div class="swiper-pagination !bottom-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apresentação do Produto -->
+    <section class="py-24 md:py-32 bg-background" id="apresentacao">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <img src="imagens/logo-pv-mdc-Dok6y-Bb.png" alt="Logo Mapa do Católico"
+                    class="object-cover h-7 w-7 shadow-md rounded-lg">
+                <span class="font-bold text-xl tracking-tight text-foreground font-sans">
+                    Mapa da Bíblia
+                </span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold font-sans text-center text-foreground mb-12 max-w-3xl mx-auto">
+                De Gênesis a Apocalipse: entenda todos os livros da Bíblia através de mapas visuais, conforme a
+                tradição católica.
+            </h2>
+
+            <div class="max-w-sm mx-auto mb-32 md:mb-40">
+                <div id="vid_68559ea8bb5e4a0d08dca0ad"
+                    style="position: relative; width: 100%; padding: 133.33333333333331% 0 0;"> <img
+                        id="thumb_68559ea8bb5e4a0d08dca0ad"
+                        src="https://images.converteai.net/b3f75e50-91c2-41a9-b5e6-4cde2919d601/players/68559ea8bb5e4a0d08dca0ad/thumbnail.jpg"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block;"
+                        alt="thumbnail">
+                    <div id="backdrop_68559ea8bb5e4a0d08dca0ad"
+                        style=" -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); position: absolute; top: 0; height: 100%; width: 100%; ">
+                    </div>
+                </div>
+                <script type="text/javascript"
+                    id="scr_68559ea8bb5e4a0d08dca0ad"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/b3f75e50-91c2-41a9-b5e6-4cde2919d601/players/68559ea8bb5e4a0d08dca0ad/player.js", s.async = !0, document.head.appendChild(s); </script>
+            </div>
+
+            <div class="bg-primary rounded-[2.5rem] p-8 md:p-12 text-primary-foreground shadow-2xl relative">
+                <!-- Floating Image -->
+                <div class="absolute left-1/2 -translate-x-1/2 -top-24 md:-top-32 w-[90%] md:w-[70%] lg:w-[60%]">
+                    <img src="imagens/Group-587-1-1024x680.webp" alt="Mapa da Bíblia Preview"
+                        class="w-full h-auto drop-shadow-2xl">
+                </div>
+
+                <div class="mt-28 md:mt-44 text-left space-y-8">
+                    <div class="space-y-6 text-lg font-serif leading-relaxed opacity-90">
+                        <p>
+                            <strong>O Mapa da Bíblia</strong> são resumos visuais da <strong>Bíblia</strong>, conforme a
+                            <strong>tradição católica e a
+                                Bíblia Ave Maria</strong>, preparando você para explorar e compreender a palavra de
+                            Deus em sua totalidade — simplificando a riqueza dos ensinamentos de cada livro sagrado.
+                        </p>
+                        <p>
+                            Com o <strong>Mapa da Bíblia</strong>, você poderá se dedicar ao estudo diário da Bíblia com
+                            <strong>entusiasmo</strong>,
+                            equipado com um <strong>guia eficaz para navegar pelas escrituras</strong> e suas múltiplas
+                            dimensões.
+                        </p>
+                        <p>
+                            Essa é <strong>a melhor forma de aprimorar seu conhecimento bíblico</strong>, estudando com
+                            confiança e
+                            vivenciando uma transformação espiritual profunda ao mergulhar nos ensinamentos de cada
+                            livro da Sagrada Escritura.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-2 md:py-2 bg-secondary/30">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-primary mb-4">O que você vai encontrar</h2>
+                <h2 class="max-w-4xl text-3xl md:text-4xl font-bold font-sans mb-4">Simplificando sua jornada espiritual
+                    e fortalecendo sua conexão com Deus
+                </h2>
+            </div>
+
+            <div class="space-y-10 md:space-y-16">
+                <!-- 1. Mapa dos 73 Livros -->
+                <div class="bg-card p-8 md:p-12 rounded-3xl shadow-sm">
+                    <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-12 lg:gap-24">
+                        <div
+                            class="flex-1 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <h3 class="text-2xl font-bold font-sans text-foreground">Mapa dos 73 Livros</h3>
+                            <p class="text-muted-foreground font-serif text-lg leading-relaxed text-left w-full">
+                                Explore cada um dos <strong>73 livros da Bíblia</strong> de forma <strong>clara e
+                                    estruturada</strong>, com <strong>resumos</strong> e
+                                <strong>elementos essenciais</strong> que facilitam o entendimento da <strong>Palavra de
+                                    Deus</strong>.
+                            </p>
+                            <p class="text-muted-foreground font-serif text-lg font-medium text-left w-full">
+                                Em cada livro, você terá:
+                            </p>
+                            <ul class="space-y-4 w-full text-left">
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Resumo do Livro</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Simbologias e temas
+                                        centrais</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Principais nomes
+                                    </span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Linha do tempo e eventos
+                                    </span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Versículos-chaves
+                                    </span></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <img src="imagens/genesis-preview-1.webp" alt="Mapa dos Livros" class="rounded-[2.5rem]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Eventos Cronológicos -->
+                <div class="bg-card p-8 md:p-12 rounded-3xl shadow-sm">
+                    <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-12 lg:gap-24">
+                        <div
+                            class="flex-1 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <h3 class="text-2xl font-bold font-sans text-foreground">Eventos Cronológicos</h3>
+                            <p class="text-muted-foreground font-serif text-lg leading-relaxed text-left w-full">
+                                Compreenda a <strong>sequência dos principais acontecimentos</strong> bíblicos em
+                                <strong>ordem cronológica</strong>,
+                                facilitando o entendimento da <strong>história da salvação</strong> e sua conexão ao
+                                longo dos tempos.
+                            </p>
+                            <ul class="space-y-4 w-full text-left">
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Linha do Tempo Bíblica</span>
+                                </li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Conexões Entre Eventos
+                                    </span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Contexto Histórico
+                                    </span></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <img src="imagens/mockup-crono.webp" alt="Eventos Cronológicos 365"
+                                class="rounded-[2.5rem]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Panorama da Bíblia -->
+                <div class="bg-card p-8 md:p-12 rounded-3xl shadow-sm">
+                    <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-12 lg:gap-24">
+                        <div
+                            class="flex-1 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <h3 class="text-2xl font-bold font-sans text-foreground">Panorama da Bíblia</h3>
+                            <p class="text-muted-foreground font-serif text-lg leading-relaxed text-left w-full">
+                                Entenda <strong>como a Bíblia está organizada</strong>, explorando suas
+                                <strong>divisões, seções e categorias
+                                    literárias</strong>. Esse guia ajuda a visualizar a <strong>conexão entre os
+                                    livros</strong> e a <strong>mensagem central</strong>
+                                das Escrituras.
+                            </p>
+                            <ul class="space-y-4 w-full text-left">
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Antigo e Novo Testamento
+                                    </span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Seções e Livros
+                                    </span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Gêneros Literários
+                                    </span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Tabela Periódica da Bíblia
+                                    </span></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <img src="imagens/panorama-estrutura-768x678.webp" alt="Panorama da Bíblia"
+                                class="rounded-[2.5rem]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Plano de Leitura -->
+                <div class="bg-card p-8 md:p-12 rounded-3xl shadow-sm">
+                    <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-12 lg:gap-24">
+                        <div
+                            class="flex-1 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <h3 class="text-2xl font-bold font-sans text-foreground">Plano de Leitura</h3>
+                            <p class="text-muted-foreground font-serif text-lg leading-relaxed text-left w-full">
+                                <strong>Plano de Leitura da Bíblia</strong> com <strong>metas capítulo a
+                                    capítulo</strong> para te incentivar a <strong>aprofundar
+                                    seu estudo Bíblico</strong> e fortalecer a sua <strong>intimidade com Deus</strong>,
+                                mesmo que você tenha pouco
+                                tempo ou viva uma vida corrida.
+                            </p>
+                            <ul class="space-y-4 w-full text-left">
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Bíblia em 365 dias</span>
+                                </li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Catecismo em 365 dias
+                                    </span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Checklist de Leitura
+                                    </span></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <img src="imagens/plano-preview.webp" alt="Plano de Leitura 365" class="rounded-[2.5rem]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Registros da Fé -->
+                <div class="bg-card p-8 md:p-12 rounded-3xl shadow-sm">
+                    <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-12 lg:gap-24">
+                        <div
+                            class="flex-1 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <h3 class="text-2xl font-bold font-sans text-foreground">Registros da Fé</h3>
+                            <p class="text-muted-foreground font-serif text-lg leading-relaxed text-left w-full">
+                                Um espaço dedicado para <strong>registrar insights</strong>, <strong>reflexões</strong>
+                                e <strong>aprendizados</strong>, ajudando a aplicar
+                                os <strong>ensinamentos bíblicos no seu dia a dia</strong>.
+                            </p>
+                            <ul class="space-y-4 w-full text-left">
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Espaço para anotações</span>
+                                </li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Anote versículos e reflexões
+                                    </span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                                        class="text-primary mt-1 shrink-0" size="18"></i><span
+                                        class="text-muted-foreground font-serif text-lg">Aplicação prática
+                                    </span></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <img src="imagens/mockup-planners.webp" alt="Registros da Fé" class="rounded-[2.5rem]">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Avaliações -->
+    <section class="py-12 md:py-16 bg-background overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <img src="imagens/logo-pv-mdc-Dok6y-Bb.png" alt="Logo Mapa do Católico"
+                    class="object-cover h-7 w-7 shadow-md rounded-lg">
+                <span class="font-bold text-xl tracking-tight text-foreground font-sans">
+                    Mapa da Bíblia
+                </span>
+            </div>
+            <h2 class="text-3xl font-bold font-sans text-center md:mb-12 mb-8">Aprovado por mais de 35.000 católicos
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-card p-8 rounded-2xl shadow-sm">
+                    <div class="flex gap-1 text-primary mb-4">
+                        <i data-lucide="star" size="16" fill="currentColor"></i><i data-lucide="star" size="16"
+                            fill="currentColor"></i><i data-lucide="star" size="16" fill="currentColor"></i><i
+                            data-lucide="star" size="16" fill="currentColor"></i><i data-lucide="star" size="16"
+                            fill="currentColor"></i>
+                    </div>
+                    <p class="text-muted-foreground font-serif italic mb-6">"Antes, me sentia perdido ao tentar entender
+                        certos livros da Bíblia. O Mapa me trouxe uma visão panorâmica que fez toda a diferença!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-secondary overflow-hidden"><img
+                                src="imagens/eduardo-mendes.webp" alt="José Marcos">
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm text-foreground">José Marcos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-card p-8 rounded-2xl shadow-sm">
+                    <div class="flex gap-1 text-primary mb-4"><i data-lucide="star" size="16" fill="currentColor"></i><i
+                            data-lucide="star" size="16" fill="currentColor"></i><i data-lucide="star" size="16"
+                            fill="currentColor"></i><i data-lucide="star" size="16" fill="currentColor"></i><i
+                            data-lucide="star" size="16" fill="currentColor"></i></div>
+                    <p class="text-muted-foreground font-serif italic mb-6">"O Mapa da Bíblia
+                        <strong>transformou
+                            meu estudo bíblico!</strong> Agora, consigo entender os contextos, as conexões e
+                        a mensagem de cada livro."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-secondary overflow-hidden"><img src="imagens/avatar1.png"
+                                alt="Fernanda Silva"></div>
+                        <div>
+                            <p class="font-bold text-sm text-foreground">Fernanda Silva</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-card p-8 rounded-2xl shadow-sm">
+                    <div class="flex gap-1 text-primary mb-4"><i data-lucide="star" size="16" fill="currentColor"></i><i
+                            data-lucide="star" size="16" fill="currentColor"></i><i data-lucide="star" size="16"
+                            fill="currentColor"></i><i data-lucide="star" size="16" fill="currentColor"></i><i
+                            data-lucide="star" size="16" fill="currentColor"></i></div>
+                    <p class="text-muted-foreground font-serif italic mb-6">"Entender o contexto de cada livro me ajudou
+                        a aplicar os ensinamentos da Bíblia na minha vida. Sou muito grato por esse material!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-secondary overflow-hidden"><img
+                                src="imagens/roberto-lima.webp" alt="Roberto Lima"></div>
+                        <div>
+                            <p class="font-bold text-sm text-foreground">Roberto Lima</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bônus -->
+    <section class="py-2 md:py-2 bg-secondary/30">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-primary mb-4">🎁 Ganhe esses Bônus hoje!
+                </h2>
+                <h2 class="max-w-2xl mx-auto text-3xl md:text-4xl font-bold font-sans mb-4">Receba esses presentes
+                    para potencializar seus estudos católicos
+                </h2>
+            </div>
+
+            <div class="space-y-10 md:space-y-16">
+                <!-- Aplicativo -->
+                <div class="bg-card p-8 md:p-12 rounded-3xl shadow-sm">
+                    <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-12 lg:gap-24">
+                        <div
+                            class="flex-1 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <h3 class="text-2xl font-bold font-sans text-foreground">App Mapa do Católico</h3>
+                            <p class="text-muted-foreground font-serif text-lg leading-relaxed text-left w-full">
+                                Receba <strong>1 mês de acesso gratuito</strong> ao <strong>App Mapa do
+                                    Católico</strong>. Tenha a
+                                <strong>Liturgia Diária</strong>, reze o <strong>Terço guiado</strong>, acompanhe
+                                <strong>Novenas</strong> e siga o plano da <strong>Bíblia em 365 dias</strong>. O
+                                companheiro ideal para sua jornada diária de oração.
+                            </p>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <img src="imagens/mockup-inicial-f9smLW5K.png" alt="Diário da Oração">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evangelho no Whatsapp -->
+                <div class="bg-card p-8 md:p-12 rounded-3xl shadow-sm">
+                    <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-12 lg:gap-24">
+                        <div
+                            class="flex-1 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <h3 class="text-2xl font-bold font-sans text-foreground">Evangelho no Whatsapp</h3>
+                            <p class="text-muted-foreground font-serif text-lg leading-relaxed text-left w-full">
+                                Você terá acesso a um <strong>grupo exclusivo</strong> onde enviamos diariamente o
+                                <strong>Evangelho do dia</strong>, uma <strong>explicação simplificada</strong> e uma
+                                <strong>oração</strong> para <strong>guiar seus momentos de reflexão</strong>.
+                            </p>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <img src="imagens/mockup-whatsapp.webp" alt="Diário da Oração">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diário da Oração -->
+                <div class="bg-card p-8 md:p-12 rounded-3xl shadow-sm">
+                    <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-12 lg:gap-24">
+                        <div
+                            class="flex-1 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <h3 class="text-2xl font-bold font-sans text-foreground">Diário da Oração</h3>
+                            <p class="text-muted-foreground font-serif text-lg leading-relaxed text-left w-full">
+                                Este <strong>planner</strong> é dedicado para aprofundar sua experiência com a Palavra
+                                de Deus através da <strong>Lectio Divina</strong>, aprofundando a <strong>leitura,
+                                    meditação, oração e contemplação</strong> das Escrituras.
+                            </p>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <img src="imagens/mockup-lectio-divina.webp" alt="Diário da Oração"
+                                class="rounded-[2.5rem]">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-10 md:space-y-16">
+                </div>
+            </div>
+    </section>
+
+
+    <!-- 7. Oferta/Assinatura -->
+    <section class="py-16 md:py-16 bg-primary/5" id="download">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-4xl font-bold font-sans mb-4">Garanta hoje o seu Mapa da Bíblia!</h2>
+                <p class="text-muted-foreground font-serif">São mais de 250 páginas exclusivas de Gênesis a Apocalipse,
+                    conforme a tradição católica!</p>
+            </div>
+
+            <div class="flex justify-center">
+                <!-- Anual (Single Option) -->
+                <div
+                    class="bg-card p-8 rounded-3xl shadow-2xl relative max-w-md w-full border-2 border-primary/10 mt-24 md:mt-32">
+
+                    <!-- Floating Image -->
+                    <div class="absolute left-1/2 -translate-x-1/2 -top-28 md:-top-36 w-[95%] md:w-[90%] lg:w-[90%]">
+                        <img id="product-image" src="imagens/mdb-capa-1.png" alt="Kit Mapa da Bíblia"
+                            class="w-full h-auto">
+                    </div>
+
+                    <!-- Plan Toggle -->
+                    <div class="flex justify-center mb-6 mt-24">
+                        <div class="bg-muted p-1 rounded-full flex relative">
+                            <button onclick="switchPlan('digital')" data-plan="digital"
+                                class="toggle-btn w-32 px-4 py-2 rounded-full text-sm font-bold transition-all bg-background text-foreground shadow-sm">Digital</button>
+                            <button onclick="switchPlan('impressa')" data-plan="impressa"
+                                class="toggle-btn w-32 px-4 py-2 rounded-full text-sm font-bold transition-all text-muted-foreground hover:bg-muted font-medium">Impresso</button>
+                        </div>
+                    </div>
+
+                    <!-- Quantity Control (Hidden by default) -->
+                    <div id="quantity-control"
+                        class="hidden flex items-center justify-center gap-4 mb-6 transition-all">
+                        <span
+                            class="text-sm font-bold text-muted-foreground uppercase tracking-wider">Quantidade:</span>
+                        <div class="flex items-center bg-muted rounded-full p-1">
+                            <button onclick="updateQuantity(-1)"
+                                class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-background font-bold text-lg transition-colors">-</button>
+                            <span id="quantity-display" class="w-8 text-center font-bold">1</span>
+                            <button onclick="updateQuantity(1)"
+                                class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-background font-bold text-lg transition-colors">+</button>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Discount Banner -->
+                    <div
+                        class="bg-primary text-primary-foreground text-center py-2 px-4 rounded-lg mb-6 font-bold shadow-md">
+                        <p class="text-sm">Desconto Especial Hoje:</p>
+                        <p id="current-date" class="text-sm md:text-base capitalize">Carregando data...</p>
+                    </div>
+
+                    <p id="original-price-display"
+                        class="text-center text-muted-foreground line-through decoration-destructive text-sm font-medium">
+                        De R$ 97,00 por</p>
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <p id="price-display" class="text-5xl font-black font-sans text-foreground">R$ 39,90</p>
+                    </div>
+                    <p id="payment-info" class="text-sm text-center text-muted-foreground mb-8">Pagamento único</p>
+
+                    <ul id="features-list" class="space-y-0 mb-8">
+                        <li class="flex gap-1 text-sm font-bold text-foreground items-center">
+                            <div class="bg-primary/10 p-1 rounded-full"><i data-lucide="check" size="14"
+                                    class="text-primary"></i></div> <span>Mapa da Bíblia Completo</span>
+                        </li>
+                        <li class="flex gap-1 text-sm text-foreground items-center">
+                            <div class="bg-primary/10 p-1 rounded-full"><i data-lucide="check" size="14"
+                                    class="text-primary"></i></div> <span>+3 Bônus Exclusivos</span>
+                        </li>
+                        <li class="flex gap-1 text-sm text-foreground items-center">
+                            <div class="bg-primary/10 p-1 rounded-full"><i data-lucide="check" size="14"
+                                    class="text-primary"></i></div> <span>Acesso Vitalício</span>
+                        </li>
+                        <li class="flex gap-1 text-sm text-foreground items-center">
+                            <div class="bg-primary/10 p-1 rounded-full"><i data-lucide="check" size="14"
+                                    class="text-primary"></i></div> <span>30 Dias de Garantia</span>
+                        </li>
+                    </ul>
+                    <a id="checkout-link" href="https://seguro.mapadocatolico.com.br/r/HJHG8XC2HB" target="_self"
+                        rel="noopener noreferrer" class="w-full block">
+                        <button
+                            class="inline-flex items-center justify-center rounded-md text-base font-medium transition-colors h-14 px-8 py-2 w-full bg-primary text-primary-foreground hover:opacity-90 shadow-lg uppercase tracking-wide">QUERO
+                            O MEU! 📖</button>
+                    </a>
+                    <p class="text-xs text-center mt-4 text-muted-foreground">Compra 100% segura e garantia de 30 dias.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infinite Scroll Testimonials (Swiper) -->
+    <section class="bg-background overflow-hidden relative py-8">
+        <div class="absolute left-0 top-0 z-20 h-full w-[15%] md:w-[25%] pointer-events-none"
+            style="background: linear-gradient(to right, var(--background) 20%, transparent);"></div>
+        <div class="absolute right-0 top-0 z-20 h-full w-[15%] md:w-[25%] pointer-events-none"
+            style="background: linear-gradient(to left, var(--background) 20%, transparent);"></div>
+
+        <div class="swiper testimonialSwiper">
+            <div class="swiper-wrapper transition-timing-function-linear">
+                <!-- Slide 1 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">Priscila Rocha</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">Sempre achava difícil de
+                            entender a Bíblia, mas o <strong>Mapa da Bíblia me ajudou a enxergar tudo de forma clara e
+                                organizada</strong>. Agora, minha leitura tem muito mais sentido!</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">Ricardo Silva</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">Com o Mapa da Bíblia,
+                            finalmente consegui <strong>conectar os ensinamentos e histórias da Bíblia de maneira
+                                lógica</strong>. Meu
+                            estudo nunca foi tão proveitoso!</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">Camila Santos</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">Eu lia a Bíblia, mas não
+                            conseguia ver a relação entre os livros. O Mapa da Bíblia <strong>abriu meus olhos para um
+                                estudo
+                                mais profundo</strong> e esclarecedor.</p>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">José Marcos</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">Antes, me sentia perdido ao
+                            tentar entender certos livros da Bíblia. O Mapa me trouxe uma <strong>visão panorâmica que
+                                fez toda
+                                a diferença!</strong></p>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">Fernanda Silva</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">O Mapa da Bíblia
+                            <strong>transformou
+                                meu estudo Bíblico!</strong> Agora, consigo entender os contextos, as conexões e
+                            a mensagem
+                            central de cada livro.
+                        </p>
+                    </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">Ana Paula</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">Sempre quis estudar a Bíblia
+                            com mais profundidade, mas não sabia por onde começar. O <strong>Mapa da Bíblia foi a
+                                solução que eu
+                                precisava!</strong></p>
+                    </div>
+                </div>
+                <!-- Slide 7 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">João Batista</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">Depois de começar a usar o
+                            Mapa da Bíblia, <strong>minha fé se fortaleceu</strong>. Agora, entendo melhor a Palavra de
+                            Deus e me sinto
+                            mais próximo d'Ele.</p>
+                    </div>
+                </div>
+                <!-- Slide 8 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">Mariana Lopes</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">Achei que estudar a Bíblia
+                            seria difícil, mas o <strong>Mapa da Bíblia torna tudo mais simples e envolvente</strong>.
+                            Não estudo mais
+                            sem ele!</p>
+                    </div>
+                </div>
+                <!-- Slide 9 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">Thiago Costa</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">A organização e os resumos
+                            dos livros da Bíblia me ajudaram a <strong>compreender sua estrutura de uma forma que nunca
+                                imaginei
+                                ser possível.</strong></p>
+                    </div>
+                </div>
+                <!-- Slide 10 -->
+                <div class="swiper-slide w-auto px-3">
+                    <div class="w-[300px] md:w-[350px] bg-card p-6 rounded-2xl shadow-sm flex flex-col gap-3 h-full">
+                        <div class="flex text-yellow-500"><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14"
+                                fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i
+                                data-lucide="star" size="14" fill="currentColor"></i></div>
+                        <p class="font-bold text-foreground leading-tight">Juliana Ramos</p>
+                        <p class="text-muted-foreground font-serif text-sm leading-relaxed">O Mapa da Bíblia me deu um
+                            novo ânimo para estudar a Palavra. Agora, <strong>cada leitura tem um propósito e faz muito
+                                mais
+                                sentido</strong> para mim!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Garantia -->
+    <section class="py-12 bg-background">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="group px-8 py-12 text-center bg-card rounded-3xl shadow-lg">
+                <div class="mx-auto flex justify-center mb-6 text-primary">
+                    <i data-lucide="shield-check" width="48" height="48"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-sans mb-4">30 Dias de Garantia</h3>
+                <p class="text-muted-foreground font-serif leading-relaxed">
+                    Confiamos tanto na qualidade do nosso material, que oferecemos garantia de 30 dias!
+                    Caso não fique totalmente satisfeito, devolveremos 100% do seu dinheiro, dentro deste prazo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Dúvidas Frequentes -->
+    <section class="py-12 bg-secondary/30">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl font-bold font-sans text-center mb-12">Dúvidas Frequentes</h2>
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <details class="group bg-card rounded-xl px-6 border-b border-border/50 last:border-0 open:pb-4">
+                    <summary
+                        class="flex items-center justify-between w-full py-6 text-left font-bold text-foreground font-sans cursor-pointer list-none focus:outline-none">
+                        O Mapa da Bíblia cobre todos os livros da Bíblia?
+                        <i data-lucide="chevron-down"
+                            class="ml-2 transform transition-transform duration-300 group-open:rotate-180 text-primary"
+                            size="20"></i>
+                    </summary>
+                    <div class="text-muted-foreground font-serif text-sm px-2 leading-relaxed mt-2">
+                        Sim, o Mapa da Bíblia é um <strong>guia completo</strong> que abrange todos os <strong>73 livros
+                            da Bíblia</strong>, incluindo
+                        tanto o <strong>Antigo quanto o Novo Testamento</strong>, conforme a Santa Igreja Católica.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details class="group bg-card rounded-xl px-6 border-b border-border/50 last:border-0 open:pb-4">
+                    <summary
+                        class="flex items-center justify-between w-full py-6 text-left font-bold text-foreground font-sans cursor-pointer list-none focus:outline-none">
+                        O Mapa da Bíblia é digital ou físico?
+                        <i data-lucide="chevron-down"
+                            class="ml-2 transform transition-transform duration-300 group-open:rotate-180 text-primary"
+                            size="20"></i>
+                    </summary>
+                    <div class="text-muted-foreground font-serif text-sm px-2 leading-relaxed mt-2">
+                        Oferecemos as duas opções! Você pode escolher a <strong>Versão Digital</strong> para
+                        baixar e acessar de onde quiser, ou a <strong>Versão Impressa (Livro)</strong>, que enviamos
+                        diretamente para sua casa com <strong>frete grátis</strong>. Em ambas as opções, você recebe
+                        acesso à nossa área de membros exclusiva com a versão digital do Mapa da Bíblia.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details class="group bg-card rounded-xl px-6 border-b border-border/50 last:border-0 open:pb-4">
+                    <summary
+                        class="flex items-center justify-between w-full py-6 text-left font-bold text-foreground font-sans cursor-pointer list-none focus:outline-none">
+                        Como vou receber o material?
+                        <i data-lucide="chevron-down"
+                            class="ml-2 transform transition-transform duration-300 group-open:rotate-180 text-primary"
+                            size="20"></i>
+                    </summary>
+                    <div class="text-muted-foreground font-serif text-sm px-2 leading-relaxed mt-2">
+                        Para a <strong>Versão Digital</strong>, o acesso chega no seu <strong>e-mail</strong> logo após
+                        a confirmação (certifique-se de preencher o e-mail e whatsapp corretamente, pois enviamos o
+                        acesso por ambos).
+                        Para a <strong>Versão Impressa</strong>, o envio é feito via <strong>Correios ou transportadora,
+                            ambos com
+                            rastreio</strong>,
+                        e você também recebe o <strong>acesso digital vitalício</strong> por e-mail imediatamente!
+                    </div>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details class="group bg-card rounded-xl px-6 border-b border-border/50 last:border-0 open:pb-4">
+                    <summary
+                        class="flex items-center justify-between w-full py-6 text-left font-bold text-foreground font-sans cursor-pointer list-none focus:outline-none">
+                        Substitui a necessidade de usar a Bíblia durante o estudo?
+                        <i data-lucide="chevron-down"
+                            class="ml-2 transform transition-transform duration-300 group-open:rotate-180 text-primary"
+                            size="20"></i>
+                    </summary>
+                    <div class="text-muted-foreground font-serif text-sm px-2 leading-relaxed mt-2">
+                        O Mapa da Bíblia é projetado para oferecer uma <strong>perspectiva única e visual</strong>, mas
+                        <strong>não substitui a
+                            riqueza e autenticidade das Escrituras</strong>. O material é concebido como um <strong>guia
+                            à Bíblia</strong>,
+                        enriquecendo sua experiência de estudo para que você tenha o desejo de aprofundar ainda mais sua
+                        compreensão dos ensinamentos bíblicos de maneira abrangente, direto da fonte.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 5 -->
+                <details class="group bg-card rounded-xl px-6 border-b border-border/50 last:border-0 open:pb-4">
+                    <summary
+                        class="flex items-center justify-between w-full py-6 text-left font-bold text-foreground font-sans cursor-pointer list-none focus:outline-none">
+                        É para católicos?
+                        <i data-lucide="chevron-down"
+                            class="ml-2 transform transition-transform duration-300 group-open:rotate-180 text-primary"
+                            size="20"></i>
+                    </summary>
+                    <div class="text-muted-foreground font-serif text-sm px-2 leading-relaxed mt-2">
+                        Sim! O Mapa da Bíblia foi desenvolvido com base na <strong>tradição católica</strong> e na
+                        <strong>Bíblia Ave Maria</strong>,
+                        seguindo a estrutura e os <strong>ensinamentos da Santa Igreja Católica.</strong>.
+                    </div>
+                </details>
+            </div>
+            <div class="mt-12 text-center">
+                <button onclick="document.getElementById('download')?.scrollIntoView({ behavior: 'smooth' })"
+                    class="inline-flex items-center justify-center rounded-md text-base font-medium transition-colors h-14 px-8 py-2 bg-primary text-primary-foreground hover:opacity-90 shadow-xl shadow-primary/20">
+                    QUERO O MEU! 📖
+                    <i data-lucide="chevron-right" size="16" class="ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-card pt-10 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="imagens/logo-pv-mdc-Dok6y-Bb.png" alt="Logo" class="w-10 h-10 shadow-lg rounded-xl">
+                        <span class="font-bold text-xl font-sans">Mapa do Católico</span>
+                    </div>
+                    <p class="text-muted-foreground max-w-sm font-serif">
+                        Nossa missão é ajudar você a aprofundar sua fé de forma simples e clara, estudando a Bíblia,
+                        compreendendo a doutrina e vivendo a vida católica com mais direção e propósito.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 font-sans">Legal</h4>
+                    <ul class="space-y-2 text-sm text-muted-foreground font-serif">
+                        <li><a href="#" class="hover:text-primary">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-primary">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-primary">Cookies</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 font-sans">Contato</h4>
+                    <ul class="space-y-2 text-sm text-muted-foreground font-serif">
+                        <li>contato@mapadocatolico.com</li>
+                        <li class="flex gap-4 mt-4">
+                            <a href="https://instagram.com/mapadocatolico" target="_blank" rel="noopener noreferrer"
+                                class="hover:text-primary text-foreground"><span class="sr-only">Instagram</span><i
+                                    data-lucide="instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center text-sm text-muted-foreground font-serif">
+                © <span id="year"></span> Mapa do Católico. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Year script
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Auto-scroll Carousel
+        const carousel = document.getElementById('hero-carousel');
+        if (carousel) {
+            setInterval(() => {
+                const scrollAmount = carousel.clientWidth;
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+                // Check if we are at the end (or close to it)
+                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 4000);
+        }
+
+        // Toggle Plan Logic
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
+        const priceElement = document.getElementById('price-display');
+        const paymentInfoElement = document.getElementById('payment-info');
+        const checkoutLink = document.getElementById('checkout-link');
+        const planTitle = document.getElementById('plan-title');
+        const quantityControl = document.getElementById('quantity-control');
+        const quantityDisplay = document.getElementById('quantity-display');
+
+        let currentPlanType = 'digital';
+        let currentQuantity = 1;
+
+        const plans = {
+            digital: {
+                title: 'Mapa da Bíblia',
+                value: 39.90,
+                originalValue: 97.00,
+                price: 'R$ 39,90',
+                info: 'Pagamento único',
+                link: 'https://seguro.mapadocatolico.com.br/r/HJHG8XC2HB',
+                image: 'imagens/mdb-capa-1.png',
+                features: [
+                    'Mapa da Bíblia Completo',
+                    '+3 Bônus Exclusivos',
+                    'Acesso Vitalício',
+                    '30 Dias de Garantia'
+                ]
+            },
+            impressa: {
+                title: 'Mapa da Bíblia Impresso',
+                value: 189.90,
+                originalValue: 227.00,
+                price: 'R$ 189,90',
+                info: '<strong>Frete Grátis</strong> para todo Brasil',
+                link: 'https://seguro.mapadocatolico.com.br/r/J2YC6BMAAE',
+                image: 'imagens/mdb-capa-fisico.webp',
+                features: [
+                    'Espiral e Capa laminada',
+                    '245 páginas coloridas',
+                    'Tamanho A4',
+                    'versão digital + 3 bônus exclusivos',
+                    'Frete Grátis'
+                ]
+            }
+        };
+
+        function updateQuantity(change) {
+            currentQuantity += change;
+            if (currentQuantity < 1) currentQuantity = 1;
+            if (currentQuantity > 5) currentQuantity = 5;
+
+            // Update UI
+            if (quantityDisplay) quantityDisplay.textContent = currentQuantity;
+
+            // Update Price and Link
+            updateTotalPrice();
+            updateLink();
+        }
+
+        function updateTotalPrice() {
+            const plan = plans[currentPlanType];
+            const total = plan.value * currentQuantity;
+            const originalTotal = plan.originalValue * currentQuantity;
+
+            if (priceElement) {
+                priceElement.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            }
+
+            const originalPriceDisplay = document.getElementById('original-price-display');
+            if (originalPriceDisplay) {
+                originalPriceDisplay.textContent = `De ${originalTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} por`;
+            }
+        }
+
+        function updateLink() {
+            let baseLink = plans[currentPlanType].link;
+            let finalLink = baseLink;
+
+            if (currentPlanType === 'impressa' && currentQuantity > 1) {
+                finalLink = `${baseLink}:${currentQuantity}`;
+            }
+
+            // Preserva as UTMs da URL atual
+            const currentParams = window.location.search;
+            if (currentParams) {
+                // Verifica se o link já tem parâmetros (?)
+                if (finalLink.includes('?')) {
+                    finalLink += '&' + currentParams.substring(1);
+                } else {
+                    finalLink += currentParams;
+                }
+            }
+
+            checkoutLink.href = finalLink;
+        }
+
+        function switchPlan(planType) {
+            currentPlanType = planType;
+            const plan = plans[planType];
+
+            // Reset Logic
+            currentQuantity = 1;
+            if (quantityDisplay) quantityDisplay.textContent = 1;
+
+            // Visibility Logic
+            if (quantityControl) {
+                if (planType === 'impressa') {
+                    quantityControl.classList.remove('hidden');
+                } else {
+                    quantityControl.classList.add('hidden');
+                }
+            }
+
+            // Update Text
+            if (paymentInfoElement) paymentInfoElement.innerHTML = plan.info;
+            if (planTitle) planTitle.textContent = plan.title;
+
+            // Update Features
+            const featuresList = document.getElementById('features-list');
+            if (featuresList) {
+                featuresList.innerHTML = ''; // Clear current features
+                plan.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.className = 'flex gap-1 text-sm text-foreground items-center';
+                    li.innerHTML = `
+                        <div class="bg-primary/10 p-1 rounded-full"><i data-lucide="check" size="14" class="text-primary"></i></div> 
+                        <span class="font-bold">${feature}</span>
+                    `;
+                    featuresList.appendChild(li);
+                });
+                // Re-initialize icons since we added new ones
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+            }
+
+            updateTotalPrice();
+            updateLink();
+
+            // Update Image
+            const productImage = document.getElementById('product-image');
+            if (productImage && plan.image) {
+                productImage.src = plan.image;
+            }
+
+            // Update Toggle Visuals
+            toggleButtons.forEach(btn => {
+                if (btn.dataset.plan === planType) {
+                    btn.classList.add('bg-background', 'text-foreground', 'shadow-sm');
+                    btn.classList.remove('text-muted-foreground', 'hover:bg-muted');
+                } else {
+                    btn.classList.remove('bg-background', 'text-foreground', 'shadow-sm');
+                    btn.classList.add('text-muted-foreground', 'hover:bg-muted');
+                }
+            });
+        }
+
+        // Date Script
+        function updateDate() {
+            const dateElement = document.getElementById('current-date');
+            if (dateElement) {
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                const today = new Date();
+                let dateString = today.toLocaleDateString('pt-BR', options);
+                // Capitalize first letter
+                dateString = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+                dateElement.textContent = dateString;
+            }
+        }
+        updateDate();
+    </script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 24,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 32,
+                },
+            },
+        });
+
+        var testimonialSwiper = new Swiper(".testimonialSwiper", {
+            slidesPerView: "auto",
+            spaceBetween: 0,
+            speed: 8000,
+            loop: true,
+            allowTouchMove: true,
+            freeMode: true,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+        });
+    </script>
+    <!-- WhatsApp Button -->
+    <a href="https://mapadocatolico.com.br/whatsapp" class="float" aria-label="Botão para contato no WhatsApp"
+        target="_blank" rel="noopener noreferrer">
+        <svg class="icon">
+            <path
+                d="M.33,48.33,3.06,35.62A23.67,23.67,0,0,1,0,24,24.06,24.06,0,0,1,24.12,0h0a23.95,23.95,0,1,1,0,47.89,24.33,24.33,0,0,1-11-2.61ZM13.7,41.08l.67.36a20.3,20.3,0,0,0,9.74,2.49A20,20,0,1,0,4,24a19.78,19.78,0,0,0,2.89,10.3l.41.68L5.52,43Z" />
+            <path
+                d="M34.67,31.75C34.22,33,32,34.21,31,34.31S30,35.12,24.5,33s-9-7.77-9.27-8.13S13,21.92,13,19.27a6.08,6.08,0,0,1,1.89-4.5,2,2,0,0,1,1.45-.67c.36,0,.72.05,1,.05s.77-.18,1.22.9,1.54,3.72,1.67,4a1,1,0,0,1,.05.95,3.53,3.53,0,0,1-.54.89c-.28.32-.58.71-.82.95s-.55.56-.24,1.09a16.48,16.48,0,0,0,3,3.73,14.93,14.93,0,0,0,4.37,2.68c.54.26.86.22,1.17-.14s1.36-1.58,1.72-2.12.72-.45,1.22-.26,3.17,1.47,3.71,1.74.9.41,1,.63A4.4,4.4,0,0,1,34.67,31.75Z" />
+        </svg>
+    </a>
+    <style>
+        :root {
+            --icon-color: #fff;
+            --icon-hover: #fff;
+            --background-color: #00c800;
+            --background-hover: #009600
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            transform: scale(0.6) translate(20%, 20%);
+            fill: var(--icon-color)
+        }
+
+        .float {
+            position: fixed;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            transition: 1s;
+            background-color: var(--background-color);
+            border-radius: 50px;
+            animation: pulse 3s infinite;
+            -webkit-animation: pulse 3s infinite;
+            -moz-animation: pulse 3s infinite;
+            -o-animation: pulse 3s infinite;
+            z-index: 99999
+        }
+
+        .float:hover {
+            background-color: var(--background-hover)
+        }
+
+        .float:hover .icon {
+            fill: var(--icon-hover)
+        }
+
+        @-webkit-keyframes pulse {
+            0% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 1)
+            }
+
+            70% {
+                -webkit-box-shadow: 0 0 0 20px rgba(0, 200, 0, 0)
+            }
+
+            100% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 0)
+            }
+        }
+
+        @-o-keyframes pulse {
+            0% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 1)
+            }
+
+            70% {
+                -webkit-box-shadow: 0 0 0 20px rgba(0, 200, 0, 0)
+            }
+
+            100% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 0)
+            }
+        }
+
+        @-ms-keyframes pulse {
+            0% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 1)
+            }
+
+            70% {
+                -webkit-box-shadow: 0 0 0 20px rgba(0, 200, 0, 0)
+            }
+
+            100% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 0)
+            }
+        }
+
+        @-moz-keyframes pulse {
+            0% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 1)
+            }
+
+            70% {
+                -webkit-box-shadow: 0 0 0 20px rgba(0, 200, 0, 0)
+            }
+
+            100% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 0)
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 1)
+            }
+
+            70% {
+                -webkit-box-shadow: 0 0 0 20px rgba(0, 200, 0, 0)
+            }
+
+            100% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 200, 0, 0)
+            }
+        }
+    </style>
+</body>
+
+</html>
