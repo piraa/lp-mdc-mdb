@@ -186,28 +186,10 @@
                 </p>
 
                 <!-- Product Carousel -->
-                <div class="md:w-[140%] my-8 relative group">
-                    <!-- Carousel Container -->
-                    <div class="swiper heroSwiper rounded-xl w-full h-72 md:h-auto md:aspect-video bg-transparent mb-8">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide w-full h-full"><img src="imagens/01-carrossel.webp" alt="Slide 1"
-                                    class="w-full h-full object-contain"></div>
-                            <div class="swiper-slide w-full h-full"><img src="imagens/02-carrossel.webp" alt="Slide 2"
-                                    class="w-full h-full object-contain"></div>
-                            <div class="swiper-slide w-full h-full"><img src="imagens/04-carrossel.webp" alt="Slide 4"
-                                    class="w-full h-full object-contain"></div>
-                            <div class="swiper-slide w-full h-full"><img src="imagens/05-carrossel.webp" alt="Slide 5"
-                                    class="w-full h-full object-contain"></div>
-                            <div class="swiper-slide w-full h-full"><img src="imagens/06-carrossel.webp" alt="Slide 6"
-                                    class="w-full h-full object-contain"></div>
-                            <div class="swiper-slide w-full h-full"><img src="imagens/07-carrossel.webp" alt="Slide 7"
-                                    class="w-full h-full object-contain"></div>
-                        </div>
-                        <div class="swiper-button-next !text-primary after:!text-2xl font-bold"></div>
-                        <div class="swiper-button-prev !text-primary after:!text-2xl font-bold"></div>
-                    </div>
-                    <!-- Pagination Outside -->
-
+                <!-- Static Image (Replaces Carousel) -->
+                <div class="w-full max-w-4xl mx-auto my-8 relative">
+                    <img src="imagens/02-carrossel.webp" alt="Mapa da Bíblia Preview"
+                        class="w-full h-auto shadow-lg hover:scale-[1.01] transition-transform duration-500">
                 </div>
 
                 <!-- Botões -->
@@ -1377,26 +1359,7 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        var heroSwiper = new Swiper(".heroSwiper", {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            loop: true,
-            observer: true, // Fix important for mobile load
-            observeParents: true, // Fix important for mobile load
-            centeredSlides: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
+
 
 
         var swiper = new Swiper(".mySwiper", {
