@@ -188,29 +188,35 @@
                 <!-- Product Carousel -->
                 <div class="md:w-[140%] my-8 relative group">
                     <!-- Carousel Container -->
+                    <!-- Carousel Container -->
                     <div id="hero-carousel"
-                        class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide rounded-xl space-x-0 w-full aspect-[4/3] md:aspect-video bg-transparent">
+                        class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide rounded-xl space-x-0 w-full aspect-[4/3] md:aspect-video bg-transparent touch-pan-y select-none">
                         <div class="snap-center shrink-0 w-full h-full"><img src="imagens/01-carrossel.webp"
-                                alt="Slide 1" class="w-full h-full object-contain"></div>
+                                alt="Slide 1" class="w-full h-full object-contain" draggable="false"
+                                oncontextmenu="return false;"></div>
                         <div class="snap-center shrink-0 w-full h-full"><img src="imagens/02-carrossel.webp"
-                                alt="Slide 2" class="w-full h-full object-contain"></div>
+                                alt="Slide 2" class="w-full h-full object-contain" draggable="false"
+                                oncontextmenu="return false;"></div>
                         <div class="snap-center shrink-0 w-full h-full"><img src="imagens/04-carrossel.webp"
-                                alt="Slide 4" class="w-full h-full object-contain"></div>
+                                alt="Slide 4" class="w-full h-full object-contain" draggable="false"
+                                oncontextmenu="return false;"></div>
                         <div class="snap-center shrink-0 w-full h-full"><img src="imagens/05-carrossel.webp"
-                                alt="Slide 5" class="w-full h-full object-contain"></div>
+                                alt="Slide 5" class="w-full h-full object-contain" draggable="false"
+                                oncontextmenu="return false;"></div>
                         <div class="snap-center shrink-0 w-full h-full"><img src="imagens/06-carrossel.webp"
-                                alt="Slide 6" class="w-full h-full object-contain"></div>
+                                alt="Slide 6" class="w-full h-full object-contain" draggable="false"
+                                oncontextmenu="return false;"></div>
                         <div class="snap-center shrink-0 w-full h-full"><img src="imagens/07-carrossel.webp"
-                                alt="Slide 7" class="w-full h-full object-contain"></div>
+                                alt="Slide 7" class="w-full h-full object-contain" draggable="false"
+                                oncontextmenu="return false;"></div>
                     </div>
 
                     <!-- Navigation Buttons -->
-                    <button
-                        onclick="document.getElementById('hero-carousel').scrollBy({left: -300, behavior: 'smooth'})"
+                    <button onclick="scrollCarousel(-1)"
                         class="absolute left-2 top-1/2 -translate-y-1/2 text-primary z-20 animate-bounce-left transition-colors hover:opacity-80">
                         <i data-lucide="chevron-left" class="w-8 h-8"></i>
                     </button>
-                    <button onclick="document.getElementById('hero-carousel').scrollBy({left: 300, behavior: 'smooth'})"
+                    <button onclick="scrollCarousel(1)"
                         class="absolute right-2 top-1/2 -translate-y-1/2 text-primary z-20 animate-bounce-right transition-colors hover:opacity-80">
                         <i data-lucide="chevron-right" class="w-8 h-8"></i>
                     </button>
@@ -766,6 +772,13 @@
     <section class="py-16 md:py-16 bg-primary/5" id="download">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-12">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <img src="imagens/logo-pv-mdc-Dok6y-Bb.png" alt="Logo Mapa do Católico"
+                        class="object-cover h-7 w-7 shadow-md rounded-lg">
+                    <span class="font-bold text-xl tracking-tight text-foreground font-sans">
+                        Mapa da Bíblia
+                    </span>
+                </div>O
                 <h2 class="text-4xl md:text-4xl font-bold font-sans mb-4">Garanta hoje o seu Mapa da Bíblia!</h2>
                 <p class="text-muted-foreground font-serif">São mais de 250 páginas exclusivas de Gênesis a Apocalipse,
                     conforme a tradição católica!</p>
@@ -1173,6 +1186,15 @@
     <script>
         // Initialize Icons
         lucide.createIcons();
+
+        // Helper for carousel buttons
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('hero-carousel');
+            if (carousel) {
+                const scrollAmount = carousel.clientWidth * direction;
+                carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
 
         // Year script
         document.getElementById('year').textContent = new Date().getFullYear();
