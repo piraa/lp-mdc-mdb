@@ -5,7 +5,15 @@
     <link rel="canonical" href="https://mapadocatolico.com.br" />
     <meta http-equiv="refresh" content="0; url=https://mapadocatolico.com.br" />
     <script>
-        window.location.replace("https://mapadocatolico.com.br");
+        // 1. Define o destino base
+        var destino = "https://mapadocatolico.com.br";
+        // 2. Pega tudo que vem depois do "?" na URL atual (ex: ?utm_source=instagram)
+        var parametros = window.location.search;
+        // 3. Verifica se existem parâmetros e monta a nova URL
+        // Se houver parâmetros, adiciona ao destino. Se não, vai só o destino.
+        var urlFinal = parametros ? destino + parametros : destino;
+        // 4. Redireciona mantendo o histórico limpo
+        window.location.replace(urlFinal);
     </script>
     <title>Redirecionando...</title>
 </head>
